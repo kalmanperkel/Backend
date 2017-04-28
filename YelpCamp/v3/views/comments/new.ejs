@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="row">
+    <h1 style="text-align: center">Add New Comment to <%= campground.name %></h1>
+
+    <div style="width: 30%; margin: 25px auto;">
+      <form id="comments" action="/campgrounds/<%= campground._id %>/comments" method="POST">
+        <div class="form-group">
+          <input id="input_text" class="form-control" type="text" name="comment[text]" placeholder="text">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+        </div>
+      </form>
+      <a href="/campgrounds">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#comments").submit(function () {
+    var shouldProceed = true //
+    var text = $('#input_text').val();
+    var author = $('#input_author').val();
+
+    if (text == "") {
+      shouldProceed = false;
+    }
+    if (author == "") {
+      shouldProceed = false
+    }
+
+    if (!shouldProceed) {
+      alert("Please fill all the fields");
+    }
+    return shouldProceed;
+  });
+</script>
+
+
+<% include ../partials/footer %>
+
